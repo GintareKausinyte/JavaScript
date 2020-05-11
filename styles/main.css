@@ -98,6 +98,17 @@ hr{
   font-size: xx-large;
   
 }
+.table-header>span:nth-child(4)::after{
+  content: '';
+  display: inline-block;
+  height: .7rem;
+  width: .7rem;
+  background: rgb(57,182,35);
+  background: linear-gradient(0deg, rgba(57,182,35,1) 0%, rgba(12,68,28,1) 100%);
+  margin-left: .3rem;
+  margin-bottom: -0.1rem;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+  }
   .table-header>span:nth-child(4){
     cursor: pointer;
     user-select: none;
