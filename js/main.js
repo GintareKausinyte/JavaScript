@@ -1,6 +1,10 @@
 const table = document.querySelector('.table');
 const title = document.querySelector('.title');
-let isAccending=true;
+let sortOrder={
+    year:null,
+    title:null
+};
+let sortBy = null;
 
 
 
@@ -32,21 +36,30 @@ function loadTable(bookData) {
         });
 
         const yearHeader = table.querySelector("span:nth-of-type(4)");
-        console.log(yearHeader);
+        const titleHeader = table.querySelector("span:nth-of-type(1)");
+
+
+        yearHeader.addEventListener("click", sortByYear);
+        titleHeader.addEventListener("click", sortByTitle);
     
-        yearHeader.addEventListener("click", sortDir);
-        console.log(isAccending);
-        switch(isAccending){
-            case true:
-                bookData.sort((a, b)=>a.year-b.year);
-                yearHeader.classList.add('desc');
+        switch (sortBy) {
+            case 'year':
+                if (sortOrder.year == 'asc') {
+                    bookData.sort((a, b) => a.year - b.year);
+                    yearHeader.classList.add('desc');
+                } else {
+                    bookData.sort((a, b) => b.year - a.year);
+                    yearHeader.classList.add('asc');
+                }
                 break;
-            case false:
-                bookData.sort((a, b)=> b.year-a.year);
-                yearHeader.classList.add('asc');
+
+            case 'title':
+                bookData.sort((a, b) => (a.title > b.title ? 1 : a.title == b.title ? 0 : -1) * (sortOrder.title == 'asc' ? 1 : -1));
+                titleHeader.classList.add(sortOrder.title);
                 break;
+
         }
-        
+
     } else {
         nullTable.innerHTML = `
   
@@ -57,11 +70,21 @@ function loadTable(bookData) {
 }
 
 
-function sortDir(){
-    if(isAccending==true){
-        isAccending=false;
-    }else{
-        isAccending=true;
+function sortByYear() {
+    sortBy = 'year';
+    if (sortOrder.year == 'asc') {
+        sortOrder.year = 'desc';
+    } else {
+        sortOrder.year = 'asc';
+    }
+    loadTable(bookData);
+}
+function sortByTitle() {
+    sortBy = 'title';
+    if (sortOrder.title == 'asc') {
+        sortOrder.title = 'desc';
+    } else {
+        sortOrder.title = 'asc';
     }
     loadTable(bookData);
 }

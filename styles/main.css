@@ -109,9 +109,36 @@ hr{
   margin-bottom: -0.1rem;
   clip-path: polygon(100% 50%, 0 0, 0 100%);
   }
+  .table-header>span:nth-child(1)::after{
+    content: '';
+    display: inline-block;
+    height: .7rem;
+    width: .7rem;
+    background: rgb(57,182,35);
+    background: linear-gradient(0deg, rgba(57,182,35,1) 0%, rgba(12,68,28,1) 100%);
+    margin-left: .3rem;
+    margin-bottom: -0.1rem;
+    clip-path: polygon(100% 50%, 0 0, 0 100%);
+    }
   .table-header>span:nth-child(4){
     cursor: pointer;
     user-select: none;
+  
+  }
+  .table-header>span:nth-child(1):hover{
+    color: rgba(73, 167, 19, 0.87);
+  }
+  .table-header>span:nth-child(1){
+    cursor: pointer;
+    user-select: none;
+  
+  }
+  .table-header>span:nth-child(1).asc:after{
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+   
+  }
+  .table-header>span:nth-child(1).desc:after{
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   
   }
   .table-header>span:nth-child(4):hover{
